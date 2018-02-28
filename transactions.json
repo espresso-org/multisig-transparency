@@ -2,13 +2,13 @@
 	"txs": [
 		{
 			"id": 147,
-			"desc": " ",
+			"desc": "Code Audit",
 			"multisigTx": "0xbbb0ac51a3a6adf81f3bfe3b3e0a0012efb3c0c18129ca14557da1153585203f",
 			"entities": []
 		},
 		{
 			"id": 146,
-			"desc": "  ",
+			"desc": "Code Audit",
 			"multisigTx": "0x569501208783aca28271593a7a3831c054280edd30c2f992e91592a29441b7a7",
 			"entities": []
 		},
