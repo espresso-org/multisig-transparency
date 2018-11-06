@@ -5,9 +5,38 @@
     .service('Wallet', function ($window, $http, $q, $rootScope, $uibModal, Utils, ABI, Connection) {
 
       // Init wallet factory object
+      const hardcodedWallets = {
+        "0x13ca9b0019edc8e2886e658e467e76223d90bcb7": {
+            "address":"0x13ca9b0019edc8e2886e658e467e76223d90bcb7",
+            "name":"a",
+            "owners": {
+                "0x00ecfab1e5840f673825982b80252054365c08f3": {
+                  "name": "Mathew Cormier",
+                  "address":"0x00ecfab1e5840f673825982b80252054365c08f3"
+                },
+                "0xf8a3b50d2c5ce855e47b52a1c843b5d9d5b53e40": {
+                  "name":"Justin Laroche",
+                  "address":"0xf8a3b50d2c5ce855e47b52a1c843b5d9d5b53e40"
+                },
+                "0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f": {
+                  "name": "Max",
+                  "address":"0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f"
+                }
+              },
+            "tokens":{
+              "0x960b236A07cf122663c4303350609A66A7B288C0": {
+                "name":"Aragon Network Token",
+                "symbol":"ANT", 
+                "balance": 1000, 
+                "decimals":18,
+                "address":"0x9612403591a7676df0628e3e886975631cd6ad43"
+              }
+            }
+          }
+        };
 
       if (!localStorage.getItem("wallets")) {
-        localStorage.setItem("wallets",'{"0x13ca9b0019edc8e2886e658e467e76223d90bcb7":{"address":"0x13ca9b0019edc8e2886e658e467e76223d90bcb7","name":"a","owners":{"0x4838eab6f43841e0d233db4cea47bd64f614f0c5":{"name":"Jorge Izquierdo","address":"0x4838eab6f43841e0d233db4cea47bd64f614f0c5"},"0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265":{"name":"Luis Cuende","address":"0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265"},"0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad":{"name":"Community Multisig","address":"0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad"}},"tokens":{"0x960b236A07cf122663c4303350609A66A7B288C0":{"name":"Aragon Network Token","symbol":"ANT", "balance": 1000, "decimals":18,"address":"0x9612403591a7676df0628e3e886975631cd6ad43"}}}}');
+        localStorage.setItem("wallets", JSON.stringify(hardcodedWallets));
       }
       var wallet = {
         wallets: JSON.parse(localStorage.getItem("wallets")),
