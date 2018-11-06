@@ -19,6 +19,38 @@ var txDefaultOrig =
   walletFactoryAddress: "0x13ca9b0019edc8e2886e658e467e76223d90bcb7"
 };
 
+var config = {
+  wallets: {
+    "0x13ca9b0019edc8e2886e658e467e76223d90bcb7": {
+      "address":"0x13ca9b0019edc8e2886e658e467e76223d90bcb7",
+      "name":"a",
+      "owners": {
+        "0x00ecfab1e5840f673825982b80252054365c08f3": {
+          "name": "Mathew Cormier",
+          "address":"0x00ecfab1e5840f673825982b80252054365c08f3"
+        },
+        "0xf8a3b50d2c5ce855e47b52a1c843b5d9d5b53e40": {
+          "name":"Justin Laroche",
+          "address":"0xf8a3b50d2c5ce855e47b52a1c843b5d9d5b53e40"
+        },
+        "0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f": {
+          "name": "Max",
+          "address":"0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f"
+        }
+      },
+      "tokens":{
+        "0x960b236A07cf122663c4303350609A66A7B288C0": {
+          "name":"Aragon Network Token",
+          "symbol":"ANT", 
+          "balance": 1000, 
+          "decimals":18,
+          "address":"0x9612403591a7676df0628e3e886975631cd6ad43"
+        }
+      }
+    }
+  }
+};
+
 var txDefault = {};
 
 /**
