@@ -36,7 +36,7 @@ var config = {
           "address":"0xf8a3b50d2c5ce855e47b52a1c843b5d9d5b53e40"
         },
         "0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f": {
-          "name": "Max",
+          "name": "Max C",
           "address":"0xdcc4501d9e6bdad1f730ffb1140cf808faed8d6f"
         }
       },
