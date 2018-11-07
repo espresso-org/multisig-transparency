@@ -21,6 +21,7 @@ var txDefaultOrig =
 
 var config = {
   pageTitle: 'Espresso Multisig Wallet',
+  titleBar: 'Multisig Wallet',
   wallets: {
     "0x13ca9b0019edc8e2886e658e467e76223d90bcb7": {
       "name":"Espresso Wallet",
