@@ -1,0 +1,20 @@
+.navbar-brand {
+    padding: 0;
+    font-size: 50px;
+    line-height: 50px;
+    margin-top: -6px;
+}
+
+.logo-text {
+    font-family: 'Dosis', sans-serif;
+    font-size: 50px;
+    color: #7c606b;
+}
+
+.navbar-brand img.logo {
+    margin-left: 15px;
+    height: 50px;
+    width: auto;
+    margin-top: 0;
+    vertical-align: middle;
+}
