@@ -230,16 +230,6 @@ angular.module('multiSigWeb').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('partials/wallet.html',
     "<!-- Owners panel -->\n" +
-    "<div class=\"panel panel-default\" data-ng-show=\"isSafari\">\n" +
-    "  <div class=\"panel-heading\">\n" +
-    "     <p class=\"centered\">In some instances the webapp won't fully load if using <b>Safari</b>. Please visit using Google Chrome or Mozilla Firefox.</p>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "<div class=\"panel panel-default\">\n" +
-    "  <div class=\"panel-heading\">\n" +
-    "      <p class=\"centered\">Please note that some past transactions could have inaccurate data, please <a href=\"https://github.com/aragon/multisig-transparency/issues/new\">inform us</a> if you see anything weird. You can read more about our <a href=\"https://blog.aragon.one/why-transparency-matters-d6f9e6e10985\">transparency model</a>.</p>\n" +
-    "  </div>\n" +
-    "</div>\n" +
     "<div class=\"row\">\n" +
     "  <div class=\"col-lg-6\">\n" +
     "    <div class=\"panel panel-default\">\n" +
