@@ -9,17 +9,17 @@
         "0x4838eab6f43841e0d233db4cea47bd64f614f0c5": "Jorge Izquierdo",
         "0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265": "Luis Cuende",
         "0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad": "Community Multisig",
-      }
+      };
 
       const hardcodedTagline = {
         "0x4838eab6f43841e0d233db4cea47bd64f614f0c5": ", Cofounder & Tech Lead",
         "0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265": ", Cofounder & Project Lead",
         "0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad": "",
-      }
+      };
 
-      const hardCodedAddress = "0xcafe1a77e84698c83ca8931f54a755176ef75f2c"
+      const hardCodedAddress = "0x13ca9b0019edc8e2886e658e467e76223d90bcb7";
 
-      $scope.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+      $scope.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
       $scope.$watch(
         function () {
@@ -83,13 +83,15 @@
             $scope.wallet.address,
             function (e, owners) {
               $scope.owners = owners;
+              
               // Check if the owners are in the wallet.owners object
               var walletOwnerskeys = Object.keys($scope.wallet.owners);
 
               for (var x=0; x<owners.length; x++){
                 if (walletOwnerskeys.indexOf($scope.owners[x]) == -1) {
+                  var owner = config.wallets[$scope.wallet.address].owners[$scope.owners[x]];
                   $scope.wallet.owners[$scope.owners[x]] = {
-                    'name' : hardcodedOwners[$scope.owners[x]],
+                    'name' : owner.name,
                     'address' : $scope.owners[x]
                   };
                 }
@@ -149,17 +151,17 @@
               if(!e && balance){
                 $scope.$apply(function () {
                   $scope.balance = balance;
-                })
+                });
 
                 $http.get('https://api.coinmarketcap.com/v1/ticker/ethereum/')
                   .success(function(data, status, headers, config) {
-                      $scope.balanceUSD = new Web3().fromWei($scope.balance).toNumber() * parseFloat(data[0].price_usd)
-                      console.log('usd balance', $scope.balanceUSD)
-                  })
+                      $scope.balanceUSD = new Web3().fromWei($scope.balance).toNumber() * parseFloat(data[0].price_usd);
+                      console.log('usd balance', $scope.balanceUSD);
+                  });
 
                 }
               })
-          )
+          );
 
         // Get token info
         if ($scope.wallet.tokens) {
@@ -173,15 +175,15 @@
                   token,
                   hardCodedAddress,
                   function (e, balance) {
-                    console.log('got balance', e, balance)
-                    $scope.wallet.tokens[token].balance = balance
+                    console.log('got balance', e, balance);
+                    $scope.wallet.tokens[token].balance = balance;
                     $http.get('https://api.coinmarketcap.com/v1/ticker/aragon/')
                       .success(function(data, status, headers, config) {
-                          var web3 = new Web3()
+                          var web3 = new Web3();
 
-                          $scope.wallet.tokens[token].balanceUSD = web3.fromWei($scope.wallet.tokens[token].balance) * parseFloat(data[0].price_usd)
-                          console.log('ant usd balance', $scope.balanceUSD)
-                      })
+                          $scope.wallet.tokens[token].balanceUSD = web3.fromWei($scope.wallet.tokens[token].balance) * parseFloat(data[0].price_usd);
+                          console.log('ant usd balance', $scope.balanceUSD);
+                      });
                     Wallet.triggerUpdates();
                   }
                 )
@@ -224,7 +226,8 @@
       });
 
       $scope.getOwnerName = function (address) {
-        return hardcodedOwners[address] + hardcodedTagline[address]
+        var owner = config.wallets[$scope.wallet.address].owners[address];
+        return owner.name;
       };
 
       $scope.getParam = function (tx) {
@@ -259,7 +262,7 @@
               var token = {};
               Object.assign(token, $scope.wallet.tokens[tokenAddress]);
               token.balance = new Web3().toBigNumber( "0x" + tx.data.slice(74));
-              let tokenName = $filter("token")(token)
+              let tokenName = $filter("token")(token);
               return {
                 title: "Transfer " + tokenName.replace('undefined', 'ANT') + " to " + $filter("addressCanBeOwner")(account, $scope.wallet)
               };

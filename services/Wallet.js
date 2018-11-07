@@ -7,7 +7,7 @@
       // Init wallet factory object
 
       if (!localStorage.getItem("wallets")) {
-        localStorage.setItem("wallets",'{"0xcafe1a77e84698c83ca8931f54a755176ef75f2c":{"address":"0xcafe1a77e84698c83ca8931f54a755176ef75f2c","name":"a","owners":{"0x4838eab6f43841e0d233db4cea47bd64f614f0c5":{"name":"Jorge Izquierdo","address":"0x4838eab6f43841e0d233db4cea47bd64f614f0c5"},"0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265":{"name":"Luis Cuende","address":"0xddc1b51b67dabd408b224d0f7dfcc93ec4b06265"},"0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad":{"name":"Community Multisig","address":"0xbeefbeef03c7e5a1c29e0aa675f8e16aee0a5fad"}},"tokens":{"0x960b236A07cf122663c4303350609A66A7B288C0":{"name":"Aragon Network Token","symbol":"ANT", "balance": 1000, "decimals":18,"address":"0x9612403591a7676df0628e3e886975631cd6ad43"}}}}')
+        localStorage.setItem("wallets", JSON.stringify(config.wallets));
       }
       var wallet = {
         wallets: JSON.parse(localStorage.getItem("wallets")),
@@ -37,7 +37,7 @@
             resolve();
           }
         });
-      }
+      };
 
       wallet.webInitialized = $q(function (resolve, reject) {
         window.addEventListener('load', function () {
@@ -92,7 +92,7 @@
               } else {
                 useExternalProvider(wallet, resolve, reject);
               }
-            })
+            });
           }
           else {
             useExternalProvider(wallet, resolve, reject);
@@ -970,25 +970,25 @@
       */
 
       // TERRIBLE NAUGHTY HACK, but is angular any better?
-      var fetching = false
-      var transactionDetails = []
+      var fetching = false;
+      var transactionDetails = [];
       function getTransaction(id) {
-        var retTx = {}
+        var retTx = {};
         transactionDetails.forEach(function (tx) {
-          if (tx.id == id) retTx = tx
-        })
-        return retTx
+          if (tx.id == id) retTx = tx;
+        });
+        return retTx;
       }
 
       wallet.getTransaction = function (address, txId, cb) {
         var instance = wallet.web3.eth.contract(wallet.json.multiSigDailyLimit.abi).at(address);
 
         if (!fetching) {
-          fetching = true
+          fetching = true;
           $http.get('./transactions.json').
           success(function(data, status, headers, config) {
-            transactionDetails = data.txs
-          })
+            transactionDetails = data.txs;
+          });
         }
 
         return wallet.callRequest(
