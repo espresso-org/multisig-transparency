@@ -30,7 +30,6 @@
 
           // Javascript doesn't have a deep object copy, this is a patch
           var copyObject = Wallet.getAllWallets()[hardCodedAddress];
-          console.log(copyObject);
           //var tokenAddresses = [Object.keys(copyObject.tokens)];
           var tokenAddresses = [];
           // The token collection is updated by the controller and the service, so must be merged.
@@ -85,13 +84,15 @@
             $scope.wallet.address,
             function (e, owners) {
               $scope.owners = owners;
+              
               // Check if the owners are in the wallet.owners object
               var walletOwnerskeys = Object.keys($scope.wallet.owners);
 
               for (var x=0; x<owners.length; x++){
                 if (walletOwnerskeys.indexOf($scope.owners[x]) == -1) {
+                  var owner = config.wallets[$scope.wallet.address].owners[$scope.owners[x]];
                   $scope.wallet.owners[$scope.owners[x]] = {
-                    'name' : hardcodedOwners[$scope.owners[x]],
+                    'name' : owner.name,
                     'address' : $scope.owners[x]
                   };
                 }
@@ -226,7 +227,8 @@
       });
 
       $scope.getOwnerName = function (address) {
-        return hardcodedOwners[address] + hardcodedTagline[address];
+        var owner = config.wallets[$scope.wallet.address].owners[address];
+        return owner.name;
       };
 
       $scope.getParam = function (tx) {
