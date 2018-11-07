@@ -42,8 +42,7 @@ var config = {
       "tokens":{
         "0x960b236A07cf122663c4303350609A66A7B288C0": {
           "name":"Aragon Network Token",
-          "symbol":"ANT", 
-          "balance": 1000, 
+          "symbol":"ANT",  
           "decimals":18,
           "address":"0x9612403591a7676df0628e3e886975631cd6ad43"
         }
