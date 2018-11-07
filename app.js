@@ -1,5 +1,6 @@
 (
   function () {
+    document.title = config.pageTitle;
     angular.module(
       'multiSigWeb',
       [
