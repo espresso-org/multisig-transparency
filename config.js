@@ -24,6 +24,7 @@ var config = {
   titleBar: 'Multisig Wallet',
   wallets: {
     "0x13ca9b0019edc8e2886e658e467e76223d90bcb7": {
+      "address":"0x13ca9b0019edc8e2886e658e467e76223d90bcb7",
       "name":"Espresso Wallet",
       "owners": {
         "0x00ecfab1e5840f673825982b80252054365c08f3": {
